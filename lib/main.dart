@@ -11,7 +11,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo 1',
       home: Container(
         //color: Colors.purple,
         child: SizedBox(width: double.infinity, child: const Quiz()),

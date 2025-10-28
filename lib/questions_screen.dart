@@ -29,7 +29,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     return Container(
       color: Colors.purple,
       child: SizedBox(
-        width: double.infinity,
+        width: double.infinity, 
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
