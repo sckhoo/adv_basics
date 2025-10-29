@@ -1,12 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:adv_basics/data/questions.dart';
+import 'package:adv_basics/questions_summary.dart';
 
+//import 'package:adv_basics/start_screen.dart';
 
 class ResultScreen extends StatelessWidget {
-  const ResultScreen(this.selectedAnswers, {super.key});
+  const ResultScreen({required this.chosenAnswers, super.key});
 
-  final List<String> selectedAnswers;
+  final List<String> chosenAnswers;
+
+  List<Map<String, Object>> getSummaryData() {
+    final List<Map<String, Object>> summary = [];
+
+    for (var i = 0; i < chosenAnswers.length; i++) {
+      summary.add({
+        'question_index': i,
+        'question': questions[i].text,
+        'correct_answer': questions[i].answers[0],
+        'user_answer': chosenAnswers[i],
+      });
+    }
+    return summary;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,20 +40,8 @@ class ResultScreen extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20),
-            Text(
-              'List of answers and questions:',
-              style: GoogleFonts.lato(fontSize: 20, color: Colors.white),
-            ),
-            const SizedBox(height: 20),
-            ...selectedAnswers.map((answer) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 4.0),
-                child: Text(
-                  answer,
-                  style: GoogleFonts.lato(fontSize: 18, color: Colors.white),
-                ),
-              );
-            }),
+            QuestionsSummary(getSummaryData()),
+
             OutlinedButton.icon(
               onPressed: () {
                 // Restart the quiz or navigate back to start screen

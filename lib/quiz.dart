@@ -33,7 +33,7 @@ class _QuizState extends State<Quiz> {
       // Show results
       //print('You have chosen all answers: $selectedAnswers');
       setState(() {
-        selectedAnswers = [];
+        //selectedAnswers = [];
         activeScreen = 'result-screen';
       });
     }
@@ -46,7 +46,7 @@ class _QuizState extends State<Quiz> {
     if (activeScreen == 'question-screen') {
       screenWidget = QuestionsScreen(onSelectAnswer: chooseAnswer);
     } else if (activeScreen == 'result-screen') {
-      screenWidget = ResultScreen(selectedAnswers);
+      screenWidget = ResultScreen(chosenAnswers: selectedAnswers);
     }
     return Scaffold(
       appBar: AppBar(title: const Text('Flutter Demo 2')),
