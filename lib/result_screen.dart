@@ -41,7 +41,7 @@ class ResultScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             QuestionsSummary(getSummaryData()),
-
+            const SizedBox(height: 20),
             OutlinedButton.icon(
               onPressed: () {
                 // Restart the quiz or navigate back to start screen
