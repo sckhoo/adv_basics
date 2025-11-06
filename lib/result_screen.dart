@@ -2,13 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:adv_basics/data/questions.dart';
 import 'package:adv_basics/questions_summary.dart';
+//import 'package:adv_basics/quiz.dart';
 
 //import 'package:adv_basics/start_screen.dart';
 
 class ResultScreen extends StatelessWidget {
-  ResultScreen({required this.chosenAnswers, super.key});
+  ResultScreen({
+    required this.chosenAnswers,
+    required this.onRestart,
+    super.key,
+  });
 
   final List<String> chosenAnswers;
+  final void Function() onRestart;
 
   List<Map<String, Object>> getSummaryData() {
     final List<Map<String, Object>> summary = [];
@@ -41,7 +47,7 @@ class ResultScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              'You answered $numCorrectAnswers out of $totalQuestions questions correctly!',
+              'You answered $numCorrectAnswers out of $totalQuestions questions correctly!!',
               style: GoogleFonts.lato(fontSize: 22, color: Colors.white),
               textAlign: TextAlign.center,
             ),
@@ -49,16 +55,14 @@ class ResultScreen extends StatelessWidget {
             QuestionsSummary(getSummaryData()),
             const SizedBox(height: 20),
             OutlinedButton.icon(
-              onPressed: () {
-                // Restart the quiz or navigate back to start screen
-              },
+              onPressed: onRestart,
               style: OutlinedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius
                       .zero, // Set border radius to zero for a rectangular shape
                 ),
               ),
-              icon: const Icon(Icons.arrow_right_alt, color: Colors.white),
+              icon: const Icon(Icons.refresh, color: Colors.white),
               label: Text(
                 'Restart Quiz',
                 style: GoogleFonts.lato(fontSize: 20, color: Colors.white),
